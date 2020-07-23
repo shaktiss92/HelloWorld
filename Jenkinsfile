@@ -7,6 +7,7 @@ pipeline {
           steps {
             echo 'I am a ${BUZZ_NAME}'
             archiveArtifacts(artifacts: '/*.jar', fingerprint: true, allowEmptyArchive: true)
+            stash(name: 's3', allowEmpty: true, includes: '**')
           }
         }
 
@@ -27,6 +28,7 @@ pipeline {
 
     stage('C') {
       steps {
+        unstash 's3'
         echo 'C'
       }
     }
