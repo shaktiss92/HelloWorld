@@ -38,7 +38,10 @@ pipeline {
         branch 'master'
       }
       steps {
-        input(message: 'Wait', ok: 'Yes')
+        timeout(time: 3, unit: 'DAYS') {
+          input(message: 'Wait', ok: 'Yes')
+        }
+
       }
     }
 
