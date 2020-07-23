@@ -34,6 +34,12 @@ pipeline {
     }
 
     stage('WaitForInput') {
+      when {
+        not {
+          branch 'master'
+        }
+
+      }
       steps {
         input(message: 'Wait', ok: 'Yes')
       }
