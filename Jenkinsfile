@@ -54,7 +54,7 @@ pipeline {
 
       }
       steps {
-        echo 'deploy.sh'
+        echo 'deploy.sh "env.GIT_COMMIT"'
       }
     }
 
