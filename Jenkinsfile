@@ -33,6 +33,12 @@ pipeline {
       }
     }
 
+    stage('Input') {
+      steps {
+        input(message: 'Wait', ok: 'Yes')
+      }
+    }
+
   }
   environment {
     BUZZ_NAME = 'Worker Bee'
