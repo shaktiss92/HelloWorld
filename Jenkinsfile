@@ -40,14 +40,14 @@ pipeline {
     }
 
     stage('DeployStage') {
+      post {
+        success {
+          emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
+        }
+
+      }
       steps {
         echo 'deploy.sh'
-      }
-    }
-
-    stage('Email') {
-      steps {
-        emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
       }
     }
 
