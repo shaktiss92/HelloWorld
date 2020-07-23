@@ -65,4 +65,7 @@ pipeline {
   environment {
     BUZZ_NAME = 'Worker Bee'
   }
+  parameters {
+    string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+  }
 }
