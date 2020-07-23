@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Fluffy Build') {
+    stage('Buzz Build') {
       steps {
         echo 'Placeholder'
+        archiveArtifacts(artifacts: '/*.jar', fingerprint: true)
       }
     }
 
