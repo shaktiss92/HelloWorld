@@ -45,7 +45,7 @@ pipeline {
     stage('DeployStage') {
       post {
         success {
-          emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
+          emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.GIT_BRANCH}]\':</p>')
         }
 
         failure {
