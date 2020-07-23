@@ -45,6 +45,12 @@ pipeline {
       }
     }
 
+    stage('Email') {
+      steps {
+        emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
+      }
+    }
+
   }
   environment {
     BUZZ_NAME = 'Worker Bee'
