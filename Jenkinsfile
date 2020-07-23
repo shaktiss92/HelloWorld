@@ -1,41 +1,47 @@
 pipeline {
   agent any
   stages {
-    stage('Buzz Build') {
+    stage('BuildStage') {
       parallel {
-        stage('Buzz Build') {
+        stage('Build Talend') {
           steps {
-            echo 'I am a ${BUZZ_NAME}'
+            echo 'talend_build.zip'
             archiveArtifacts(artifacts: '/*.jar', fingerprint: true, allowEmptyArchive: true)
-            stash(name: 's3', allowEmpty: true, includes: '**')
+            stash(name: 's3_stash', allowEmpty: true, includes: '**')
           }
         }
 
-        stage('A') {
+        stage('Build Java') {
           steps {
-            echo 'A'
+            echo 'java_build.sh'
           }
         }
 
-        stage('B') {
+        stage('Build Scala') {
           steps {
-            echo 'B'
+            echo 'scala_build.sh'
           }
         }
 
       }
     }
 
-    stage('C') {
+    stage('TestStage') {
       steps {
-        unstash 's3'
-        echo 'C'
+        unstash 's3_stash'
+        echo 'Test all build steps'
       }
     }
 
-    stage('Input') {
+    stage('WaitForInput') {
       steps {
         input(message: 'Wait', ok: 'Yes')
+      }
+    }
+
+    stage('DeployStage') {
+      steps {
+        echo 'deploy.sh'
       }
     }
 
