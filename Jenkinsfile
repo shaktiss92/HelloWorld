@@ -45,6 +45,10 @@ pipeline {
           emailext(subject: 'Completed: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>COMPLETED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
         }
 
+        failure {
+          emailext(subject: 'FAILED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '<p>FAILED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>')
+        }
+
       }
       steps {
         echo 'deploy.sh'
