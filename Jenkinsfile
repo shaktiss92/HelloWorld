@@ -17,7 +17,7 @@ pipeline {
           }
         }
 
-        stage('Build Scala') {
+        stage('Builds Scala') {
           steps {
             echo 'scala_build.sh'
           }
